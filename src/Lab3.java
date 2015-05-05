@@ -14,6 +14,7 @@ public abstract class  Lab3 {
         in.close();
         System.out.println("Итого: " + getNumOfVerbs(s) + " совпадения.");
         System.out.println("Итого: " + getNumOfAdj(s) + " совпадения.");
+        System.out.println("Итого: " + getNumOfAdv(s) + " совпадения.");
     }
 
     public static int getNumOfVerbs(String string) {
@@ -43,4 +44,16 @@ public abstract class  Lab3 {
         return numOfAdj;
     }
 
+    public static int getNumOfAdv(String string) {
+        String reAdv = "\\b[а-яА-ЯёЁ]{2,}о\\b";
+        Pattern p = Pattern.compile(reAdv);
+        Matcher m = p.matcher(string);
+        System.out.println("Ищем наречия:");
+        int numOfAdv = 0;
+        while (m.find()) {
+            System.out.println(m.group());
+            numOfAdv++;
+        }
+        return numOfAdv;
+    }
 }
