@@ -13,10 +13,11 @@ public abstract class  Lab3 {
             s += in.nextLine() + "\r\n";
         in.close();
         System.out.println("Итого: " + getNumOfVerbs(s) + " совпадения.");
+        System.out.println("Итого: " + getNumOfAdj(s) + " совпадения.");
     }
 
     public static int getNumOfVerbs(String string) {
-        String reV = "\\b[а-яА-ЯёЁ]+((ть)|(л)|(ла)|(ло)|(ли)|(шь)|(ет)|(ют)|(ит)|(ят)|(аю)|(ти))\\b";
+        String reV = "\\b[а-яА-ЯёЁ]+((ть)|(тся)|(ться)|(л)|(ла)|(ло)|(ли)|(шь)|(ет)|(ют)|(ит)|(ят)|(аю)|(ти))\\b";
         Pattern p = Pattern.compile(reV);
         Matcher m = p.matcher(string);
         System.out.println("Ищем глаголы:");
@@ -28,5 +29,18 @@ public abstract class  Lab3 {
         return numOfVerbs;
     }
 
+    public static int getNumOfAdj(String string) {
+        String reAdj;
+        reAdj = "\\b[а-яА-ЯёЁ]+((ое)|(ый)|(ые)|(ие)|(ий)|(ую)|(ого)|(его)|(ому)|(ему)|(им)|(ым)|(ой))\\b";
+        Pattern p = Pattern.compile(reAdj);
+        Matcher m = p.matcher(string);
+        System.out.println("Ищем прилагательные:");
+        int numOfAdj = 0;
+        while (m.find()) {
+            System.out.println(m.group());
+            numOfAdj++;
+        }
+        return numOfAdj;
+    }
 
 }
